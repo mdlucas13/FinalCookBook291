@@ -23,52 +23,34 @@ class ViewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let recipe = currRecipe {
-            recipeLabel.text = recipe.recipeName
-            descriptionLabel.text = recipe.recipeDescription
-            // Directly format the date since it's non-optional
-            dateLabel.text = Self.dateFormatter.string(from: recipe.date)
-            recipePrepTimeLabel.text = recipe.recipePrepTime
-            recipeCookTimeLabel.text = recipe.recipeCookTime
-            recipeCategoryLabel.text = recipe.recipeCategory
-            recipeIngredientsLabel.text = recipe.recipeIngredients
-            recipeStepsLabel.text = recipe.recipeSteps
-        }
-
+        setupUI()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(didTapDelete))
     }
 
+    private func setupUI() {
+        guard let recipe = currRecipe else { return }
+        recipeLabel.text = recipe.recipeName
+        descriptionLabel.text = recipe.recipeDescription
+        dateLabel.text = Self.dateFormatter.string(from: recipe.date)
+        recipePrepTimeLabel.text = recipe.recipePrepTime
+        recipeCookTimeLabel.text = recipe.recipeCookTime
+        recipeCategoryLabel.text = recipe.recipeCategory
+        recipeIngredientsLabel.text = recipe.recipeIngredients
+        recipeStepsLabel.text = recipe.recipeSteps
+    }
 
     @objc private func didTapDelete() {
-        guard let recipe = currRecipe else {
-            return
-        }
-
+        guard let recipe = currRecipe else { return }
         do {
             try realm.write {
                 realm.delete(recipe)
             }
-            deletionHandler?()
+            deletionHandler?()  // Notify ViewController to refresh data
             navigationController?.popViewController(animated: true)
         } catch {
             print("Failed to delete the recipe: \(error)")
             showErrorAlert(message: "Failed to delete the recipe. Please try again.")
         }
-
-        // Nullify the currRecipe if needed, though typically you just navigate away.
-        currRecipe = nil
-    }
-   
-
-    func clearUI() {
-        recipeLabel.text = "Deleted"
-        descriptionLabel.text = ""
-        dateLabel.text = ""
-        recipePrepTimeLabel.text = ""
-        recipeCookTimeLabel.text = ""
-        recipeCategoryLabel.text = ""
-        recipeIngredientsLabel.text = ""
-        recipeStepsLabel.text = ""
     }
 
 
@@ -78,4 +60,3 @@ class ViewViewController: UIViewController {
         self.present(alert, animated: true)
     }
 }
-

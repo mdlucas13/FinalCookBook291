@@ -86,18 +86,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showRecipeDetails" {
-            guard let indexPath = sender as? IndexPath,
-                  let viewVC = segue.destination as? ViewViewController else {
-                return
-            }
+        if segue.identifier == "showRecipeDetails", let indexPath = sender as? IndexPath, let viewVC = segue.destination as? ViewViewController {
             let recipe = data[indexPath.row]
             viewVC.currRecipe = recipe
+            viewVC.deletionHandler = { [weak self] in
+                self?.refresh()
+            }
         }
     }
 
+
     func refresh() {
-        data = Array(realm.objects(Recipe.self).sorted(byKeyPath: "recipeName", ascending: true))
-        table.reloadData()
+        DispatchQueue.main.async {
+            self.data = Array(self.realm.objects(Recipe.self).sorted(byKeyPath: "recipeName", ascending: true))
+            self.table.reloadData()
+        }
     }
+
 }
