@@ -1,36 +1,55 @@
-//
-//  AppDelegate.swift
-//  FinalCookBook291
-//
-//  Created by Kenzie on 4/23/24.
-//
-
 import UIKit
+import RealmSwift
 
-@main
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Initialize Realm (including migration setup)
+        initializeRealm()
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
+    private func initializeRealm() {
+        // Define the Realm configuration for migration
+        let config = Realm.Configuration(
+            schemaVersion: 2,  // Increase if necessary to force a migration
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 2 {
+                    migration.enumerateObjects(ofType: Recipe.className()) { oldObject, newObject in
+                        if newObject!["id"] == nil {
+                            newObject!["id"] = UUID().uuidString
+                        }
+                    }
+                }
+            })
 
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        // Set the modified configuration as the default Realm configuration
+        Realm.Configuration.defaultConfiguration = config
+
+        // Try initializing Realm with the new configuration
+        do {
+            _ = try Realm()
+        } catch {
+            print("Realm initialization failed: \(error)")
+        }
     }
 
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // Handle the transition to the background
     }
 
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // Handle the transition back to the foreground
+    }
 
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // Restart any tasks paused (or not yet started) while the application was inactive
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Called when the application is about to terminate
+    }
 }
-

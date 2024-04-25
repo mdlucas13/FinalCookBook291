@@ -1,8 +1,7 @@
 //
 //  SceneDelegate.swift
-//  FinalCookBook291
+//  CookBook
 //
-//  Created by Kenzie on 4/23/24.
 //
 
 import UIKit
