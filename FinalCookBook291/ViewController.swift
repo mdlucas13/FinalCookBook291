@@ -67,6 +67,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         table.reloadRows(at: [IndexPath(row: recipeIndex, section: 0)], with: .none)
     }
+    
+    @IBAction func didTapAddButton(){
+            guard let vc = storyboard?.instantiateViewController(withIdentifier: "enter") as? EntryViewController else{
+                return
+            }
+            vc.completionHandler = { [weak self] in
+                self?.refresh()
+            }
+            vc.title = "New Recipe"
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+        }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

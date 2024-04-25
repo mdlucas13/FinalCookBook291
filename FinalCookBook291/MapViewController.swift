@@ -40,7 +40,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func searchNearbyGroceryStores(location: CLLocation) {
         let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = "grocery store Walmart | Aldi | Harris Teeter | Kroger"
+        request.naturalLanguageQuery = "grocery store"  // Simplified search query
         request.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 80467, longitudinalMeters: 80467) // 50 miles
 
         let search = MKLocalSearch(request: request)
