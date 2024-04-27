@@ -22,6 +22,9 @@
 		0D62384B2BD87AA300F4F0C8 /* RealmFFI in Frameworks */ = {isa = PBXBuildFile; productRef = 0D62384A2BD87AA300F4F0C8 /* RealmFFI */; };
 		0D62384D2BD87AA300F4F0C8 /* RealmQueryParser in Frameworks */ = {isa = PBXBuildFile; productRef = 0D62384C2BD87AA300F4F0C8 /* RealmQueryParser */; };
 		0D62384F2BD9887E00F4F0C8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D62384E2BD9887E00F4F0C8 /* MapViewController.swift */; };
+		0D6238772BDC011C00F4F0C8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6238762BDC011C00F4F0C8 /* LoginViewController.swift */; };
+		0D658AFA2BDC66DD006C814B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D658AF92BDC66DD006C814B /* User.swift */; };
+		0D658AFC2BDC6C37006C814B /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D658AFB2BDC6C37006C814B /* UserSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		0D62383C2BD87A1600F4F0C8 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		0D62383E2BD87A4700F4F0C8 /* ViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewViewController.swift; sourceTree = "<group>"; };
 		0D62384E2BD9887E00F4F0C8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0D6238762BDC011C00F4F0C8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0D658AF92BDC66DD006C814B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0D658AFB2BDC6C37006C814B /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +86,10 @@
 				0D62384E2BD9887E00F4F0C8 /* MapViewController.swift */,
 				0D62382E2BD8799D00F4F0C8 /* Main.storyboard */,
 				0D6238312BD879A000F4F0C8 /* Assets.xcassets */,
+				0D6238762BDC011C00F4F0C8 /* LoginViewController.swift */,
 				0D6238332BD879A000F4F0C8 /* LaunchScreen.storyboard */,
+				0D658AF92BDC66DD006C814B /* User.swift */,
+				0D658AFB2BDC6C37006C814B /* UserSession.swift */,
 				0D6238362BD879A000F4F0C8 /* Info.plist */,
 				0D62383C2BD87A1600F4F0C8 /* EntryViewController.swift */,
 				0D62383E2BD87A4700F4F0C8 /* ViewViewController.swift */,
@@ -171,10 +180,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D6238772BDC011C00F4F0C8 /* LoginViewController.swift in Sources */,
 				0D62382D2BD8799D00F4F0C8 /* ViewController.swift in Sources */,
 				0D62384F2BD9887E00F4F0C8 /* MapViewController.swift in Sources */,
 				0D62383D2BD87A1600F4F0C8 /* EntryViewController.swift in Sources */,
+				0D658AFA2BDC66DD006C814B /* User.swift in Sources */,
 				0D62383F2BD87A4700F4F0C8 /* ViewViewController.swift in Sources */,
+				0D658AFC2BDC6C37006C814B /* UserSession.swift in Sources */,
 				0D6238292BD8799D00F4F0C8 /* AppDelegate.swift in Sources */,
 				0D62382B2BD8799D00F4F0C8 /* SceneDelegate.swift in Sources */,
 			);
